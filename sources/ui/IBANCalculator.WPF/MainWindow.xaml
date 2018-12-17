@@ -1,0 +1,63 @@
+﻿<Window x:Class="IBANCalculator.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IBANCalculator.WPF"
+        mc:Ignorable="d"
+        Title="IBAN Calculator" SizeToContent="Height" Width="450" ResizeMode="NoResize">
+	<StackPanel Margin="10">
+		<Grid Margin="0,0,0,5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="4*" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="Länderkennung" />
+			<ComboBox Grid.Column="1"
+					  ItemsSource="{Binding Countries}"
+					  SelectedValue="{Binding Country}"
+					  DisplayMemberPath="Key"
+					  SelectedValuePath="Value" />
+		</Grid>
+		<Grid Margin="0,0,0,5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="4*" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="Konto-Nr." />
+			<TextBox Grid.Column="1"
+					 MaxLength="12"
+					 Text="{Binding KtoNr}"
+					 PreviewTextInput="PreviewTextInput_AlphaNumeric"
+					 BorderBrush="{Binding BorderBrushKtoNr}" />
+		</Grid>
+		<Grid Margin="0,0,0,5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="4*" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="Bankleitzahl" />
+			<TextBox Grid.Column="1"
+					 MaxLength="8"
+					 Text="{Binding BLZ}"
+					 PreviewTextInput="PreviewTextInput_AlphaNumeric"
+					 BorderBrush="{Binding BorderBrushBLZ}" />
+		</Grid>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="4*" />
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="1" Content="Berechnen" Height="24" x:Name="btnCalculate" />
+		</Grid>
+		<Separator Margin="0, 20, 0, 10" />
+		<Grid Margin="0,5,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="4*" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="IBAN" />
+			<TextBox Grid.Column="1" IsReadOnly="True" Text="{Binding IBAN}" />
+		</Grid>
+	</StackPanel>
+</Window>
